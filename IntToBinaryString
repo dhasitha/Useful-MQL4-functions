@@ -1,0 +1,6 @@
+string IntToBinary(int i){
+  if(i<=0) return "0";
+  string out="";
+  for(;i!=0;i/=2) out=string(i%2)+out;
+  return(out);
+}
