@@ -1,0 +1,16 @@
+string ArrayToBASE64(uchar &src[]) {
+   uchar dst[]; 
+   if (CryptEncode(CRYPT_BASE64,src,src,dst) > 0 ) {
+      return CharArrayToString(dst,0,WHOLE_ARRAY,CP_UTF8);
+   } else {
+      Print("Error in CryptEncode. Error code=",GetLastError());
+      return "";
+   }
+}
+
+void BASE64ToArray(string BASE64Str, uchar &dst[]) {
+   uchar src[]; StringToCharArray(BASE64Str,src,0,StringLen(BASE64Str),CP_UTF8);
+   if (CryptDecode(CRYPT_BASE64,src,src,dst) <= 0 ) {
+      Print("Error in CryptEncode. Error code=",GetLastError());
+   }
+}
