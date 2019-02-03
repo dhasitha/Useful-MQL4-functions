@@ -1,0 +1,13 @@
+string MD5(string text) {
+   uchar src[],dst[]; StringToCharArray(text,src);
+   if(CryptEncode(CRYPT_HASH_MD5,src,src,dst) > 0 ) {
+         string res="";
+         int count=ArraySize(dst);
+         for(int i=0; i<count; i++)
+         res+=StringFormat("%.2X",dst[i]);
+         return(res);
+   } else {
+      Print("Error in CryptEncode(MD5). Error code=",GetLastError());
+      return "";
+   }
+}
